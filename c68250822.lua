@@ -5,7 +5,7 @@ function c68250822.initial_effect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e1:SetCode(EVENT_FREE_CHAIN)
-	e1:SetCountLimit(1,68250822)
+	e1:SetCountLimit(1,68250822++EFFECT_COUNT_CODE_OATH)
 	e1:SetHintTiming(0,TIMINGS_CHECK_MONSTER+TIMING_END_PHASE)
 	e1:SetTarget(c68250822.target)
 	e1:SetOperation(c68250822.operation)
@@ -15,9 +15,9 @@ function c68250822.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local zone=c68250822.getzone(tp)
 	local c=e:GetHandler()
 	if chkc then
-		if e:GetLabel()==0 then
+		if e:GetLabel()==1 then
 			return chkc:IsLocation(LOCATION_MZONE+LOCATION_GRAVE) and c68250822.cfilter1(chkc,tp)
-		elseif e:GetLabel()==1 then
+		elseif e:GetLabel()==2 then
 			return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(1-tp) and c68250822.filter2(chkc,zone)
 		else
 			return chkc:IsLocation(LOCATION_GRAVE) and c68250822.filter3(chkc,e,tp,zone)
